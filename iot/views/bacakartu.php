@@ -53,16 +53,14 @@
 <?php } else {
 
 	$cari_siswa = mysqli_query($con,"select siswa.*, kelas.nama_kelas from siswa join kelas on siswa.id_kelas = kelas.id_kelas where nokartu = '$nokartu'");
-	$cari_kelas = mysqli_query($con,"select * from kelas");
 	$jumlah_data = mysqli_num_rows($cari_siswa);
 
 	if ($jumlah_data==0) {
 		echo "<h1>Kartu Tidak terdaftar</h1>";
 	}else{
 		$Getkartusiswa = mysqli_fetch_array($cari_siswa);
-		$Getnamakelas = mysqli_fetch_array($cari_kelas);
 		$nama_siswa = $Getkartusiswa['nama'];
-		$nama_kelas = $Getnamakelas['id_kelas'];
+		$nama_kelas = $Getkartusiswa['id_kelas'];
 
 		date_default_timezone_set('Asia/Jakarta');
             $tanggal = date('Y-m-d');
